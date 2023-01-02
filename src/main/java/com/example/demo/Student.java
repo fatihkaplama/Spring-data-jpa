@@ -3,6 +3,12 @@ package com.example.demo;
 import javax.persistence.*;
 
 @Entity(name = "Student")
+@Table(
+        name = "Student",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)
 public class Student {
 
     @Id
@@ -35,9 +41,7 @@ public class Student {
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
-
+            columnDefinition = "TEXT"
     )
     private String email;
     @Column(
@@ -59,7 +63,7 @@ public class Student {
     }
 
     public Student() {
-        
+
     }
 
     public Long getId() {
